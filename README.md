@@ -1,6 +1,8 @@
-# Getting Started with Create React App
+# Ihtiyac Kredisi Hesaplama
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project project calculates basic loan without taxes. Here is the preview:
+
+![kredi-gif](https://raw.githubusercontent.com/emreharman/kredi-hesaplama-react/master/src/img/kredi-hesaplama.gif)
 
 ## Available Scripts
 
