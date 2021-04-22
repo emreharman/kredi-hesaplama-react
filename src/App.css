@@ -93,6 +93,11 @@ form span {
 .button-container button:focus {
   outline: none;
 }
+.error {
+  text-align: center;
+  color: red;
+  font-size: 0.6rem;
+}
 /*Result Style*/
 .result {
   background-color: rgb(226, 226, 226);
