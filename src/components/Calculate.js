@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 
-const Calculate = () => {
+const Calculate = ({ setResult }) => {
   const [kredi, setKredi] = useState(1000);
   const [krediError, setKrediError] = useState(false);
   const [krediErrorMessage, setKrediErrorMessage] = useState("");
   const [taksitSayisi, setTaksitSayisi] = useState(3);
   const [taksitError, setTaksitError] = useState(false);
   const [taksitErrorMessagge, setTaksitErrorMessagge] = useState("");
-  const [faizOrani, setFaizOrani] = useState(0);
+  const [faizOrani, setFaizOrani] = useState(0.1);
   const [faizError, setFaizError] = useState(false);
   const [faizErrorMessagge, setFaizErrorMessagge] = useState("");
   const handleSubmit = (e) => {
@@ -21,6 +21,11 @@ const Calculate = () => {
     //console.log("aylık taksit: ", aylikTaksit);
     const toplamOdeme = aylikTaksit * taksitSayisi;
     //console.log("toplam ödeme: ", toplamOdeme);
+    setResult({
+      aylikTaksit,
+      toplamOdeme,
+      faizOrani,
+    });
   };
   useEffect(() => {
     if (kredi > 100000) {
@@ -63,10 +68,10 @@ const Calculate = () => {
     }
   }, [taksitSayisi]);
   useEffect(() => {
-    if (faizOrani < 0) {
+    if (faizOrani <= 0) {
       setFaizError(true);
-      setFaizErrorMessagge("Faiz Oranı 0'dan Küçük Olamaz.");
-      setFaizOrani(0);
+      setFaizErrorMessagge("Faiz Oranı 0 ve 0'dan Küçük Olamaz.");
+      setFaizOrani(0, 1);
       setTimeout(() => {
         setFaizError(false);
         setFaizErrorMessagge("");
@@ -152,7 +157,7 @@ const Calculate = () => {
             <input
               type="number"
               required
-              value={faizOrani}
+              value={parseFloat(faizOrani)}
               onChange={(e) => setFaizOrani(parseFloat(e.target.value))}
             />
           </div>
